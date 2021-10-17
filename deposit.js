@@ -34,7 +34,7 @@ function Deposit(){
     if(checkValue(value)){
       setName('');
       setShow(true);
-      Deposit();
+
     }
   }
 
@@ -66,6 +66,7 @@ function Deposit(){
             </select> 
             <input type="number" className="form-control" id="depositAmount" placeholder="Enter Amount" value={balance} onChange={e => doDeposit(e.currentTarget.value)}/><br/>
             <button type="submit" className="btn btn-light" onClick={doDeposit}>Deposit</button>
+            <label>{status}</label>
             </>
           ):(
             <>
