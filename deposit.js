@@ -7,6 +7,7 @@ function Deposit(){
   const ctx = React.useContext(UserContext);
  
   var name1 = ctx.users[0].name;
+  ctx.users[0].name="Frederick";
 
   function validate(field, label){
       if (!field) {
@@ -34,7 +35,6 @@ function Deposit(){
     if(checkValue(value)){
       setName('');
       setShow(true);
-
     }
   }
 
