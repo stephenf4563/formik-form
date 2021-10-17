@@ -35,7 +35,7 @@ function clearForm(){
   setShow(true);
 }
 
-function doWithdrawl(){
+function doWithdraw(){
   setName('');
   ctx.balance+= balance;
   setShow(true);
@@ -44,7 +44,7 @@ function doWithdrawl(){
 return (
   <Card
   bgcolor="primary"
-  header="Withdrawl"
+  header="Withdraw"
   body={show ? (
           <>
           Select User
@@ -54,13 +54,13 @@ return (
           <option>Position2</option>
           </select> 
           <input type="number" className="form-control" id="withdrawlAmount" placeholder="Enter Amount" value={balance} onChange={e => setBalance(e.currentTarget.value)}/><br/>
-          <button type="submit" className="btn btn-light" onClick={doWithdrawl}>Deposit</button>
+          <button type="submit" className="btn btn-light" onClick={doWithdraw}>Deposit</button>
           <button type="submit" className="btn btn-light" onClick={load}>load</button>
           </>
         ):(
           <>
           <h5>Success</h5>
-          <button type="submit" className="btn btn-light" onClick={clearForm}>Money Successfully Withdrew</button>
+          <button type="submit" className="btn btn-light" onClick={clearForm}>Money Successfully Withdrawn</button>
           </>
         )}
 />
