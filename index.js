@@ -7,7 +7,7 @@ function Spa() {
           <Route path="/" exact component={Home} />
           <Route path="/CreateAccount/" component={CreateAccount} />
           <Route path="/deposit/" component={Deposit} />
-          <Route path="/withdraw/" component={Withdraw} />
+          // <Route path="/withdraw/" component={Withdraw} />
           <Route path="/alldata/" component={AllData} />
         </div>
       </UserContext.Provider>      
