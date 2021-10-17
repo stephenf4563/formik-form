@@ -4,12 +4,9 @@ function Deposit(){
   const [status, setStatus]     = React.useState('');
   const [name, setName]         = React.useState('');
   const [balance, setBalance] = React.useState('');
-  const [selected,setSelected] = React.useState('');
+  
   const ctx = React.useContext(UserContext);
- 
-  var name1 = ctx.users[0].name;
-  ctx.users[0].name="Frederick";
-
+  var selected = "";
   function validate(field, label){
       if (!field) {
         setStatus('Error: ' + label);
@@ -63,7 +60,7 @@ function Deposit(){
   }
 
   function updateSelected(nameVal){
-    setSelected(nameVal);
+    selected = nameVal;
   }
 
   return (
