@@ -7,7 +7,7 @@ function AllData(){
       status={status}
       body={ <>
         <h5>All Data in Store</h5>
-        {JSON.stringify(ctx)}<br/>
+        {ctx.users[0].name +"\n" + ctx.users[0].email}<br/>
         </>
       }
   />
