@@ -1,16 +1,18 @@
-function load(){
-    ctx.users.name;
-  }
 function Deposit(){
+
   const [show, setShow]         = React.useState(true);
   const [status, setStatus]     = React.useState('');
   const [name, setName]         = React.useState('');
   const [balance, setBalance] = React.useState('');
   const ctx = React.useContext(UserContext);
-
-  function load(){
-    console.log(React.users);
-    console.log(React.useContext(UserContext));
+ 
+  var users = ctx.users;
+  var nameList = document.getElementById('nameList');
+  for(var i = 0; i < users.length; i++) {
+      var opt = document.createElement('option');
+      opt.innerHTML = users[i].name;
+      opt.value = users[i].name;
+      sel.appendChild(opt);
   }
 
   function validate(field, label){
@@ -49,9 +51,7 @@ function Deposit(){
     body={show ? (
             <>
             Select User<br/>
-            <select>
-            <option>Position1</option>
-            <option>Position2</option>
+            <select id="nameList">
             </select> 
             <input type="number" className="form-control" id="depositAmount" placeholder="Enter Amount" value={balance} onChange={e => setBalance(e.currentTarget.value)}/><br/>
             <button type="submit" className="btn btn-light" onClick={doDeposit}>Deposit</button>
