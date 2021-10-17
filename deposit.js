@@ -48,7 +48,7 @@ function Deposit(){
 
   function populateList(){
     return (
-      React.users.map(user => (
+      ctx.users.map(user => (
         <option>{user.name}</option>
       ))
     )
