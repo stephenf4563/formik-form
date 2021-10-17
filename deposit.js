@@ -4,6 +4,7 @@ function Deposit(){
   const [status, setStatus]     = React.useState('');
   const [name, setName]         = React.useState('');
   const [balance, setBalance] = React.useState('');
+  const [selected,setSelected] = React.useState('');
   const ctx = React.useContext(UserContext);
  
   var name1 = ctx.users[0].name;
@@ -33,6 +34,12 @@ function Deposit(){
 
   function doDeposit(value){
     if(checkValue(value)){
+      var users = ctx.users;
+      for(var i = 0; i < users.length; i++) {
+        if(selected = users[i].name){
+          users[i].balance = users[i].balance+value;
+        }
+      }
       setName('');
       setShow(true);
     }
@@ -55,6 +62,10 @@ function Deposit(){
     )
   }
 
+  function updateSelected(value){
+    setSelected(value);
+  }
+
   return (
     <Card
     bgcolor="primary"
@@ -62,7 +73,7 @@ function Deposit(){
     body={show ? (
             <>
             Select User<br/>
-            <select id="nameList">
+            <select id="nameList" onChange={e => updateSelected(e.currentTarget.value)}>
               {populateList()}
             </select> 
             <input type="number" className="form-control" id="depositAmount" placeholder="Enter Amount" value={balance} onChange={e => doDeposit(e.currentTarget.value)}/><br/>
