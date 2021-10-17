@@ -6,15 +6,6 @@ function Deposit(){
   const [balance, setBalance] = React.useState('');
   const ctx = React.useContext(UserContext);
  
-  var users = ctx.users;
-  var nameList = document.getElementById('nameList');
-  for(var i = 0; i < users.length; i++) {
-      var opt = document.createElement('option');
-      opt.innerHTML = users[i].name;
-      opt.value = users[i].name;
-      sel.appendChild(opt);
-  }
-
   function validate(field, label){
       if (!field) {
         setStatus('Error: ' + label);
@@ -52,6 +43,9 @@ function Deposit(){
             <>
             Select User<br/>
             <select id="nameList">
+              <option>
+            {JSON.ctx.users[0].name}
+            </option>
             </select> 
             <input type="number" className="form-control" id="depositAmount" placeholder="Enter Amount" value={balance} onChange={e => setBalance(e.currentTarget.value)}/><br/>
             <button type="submit" className="btn btn-light" onClick={doDeposit}>Deposit</button>
