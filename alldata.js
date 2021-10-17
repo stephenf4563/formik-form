@@ -4,11 +4,11 @@ function AllData(){
      <Card
   bgcolor="primary"
   header="Alldata"
-  body={show ? (
+  body={show (
    <>
     <h5>All Data in Store</h5>
     {JSON.stringify(ctx)}<br/>
     </>
-  );
-) 
+  )
+  }
 }
