@@ -11,7 +11,6 @@ function AllData(){
         prettyString+=users[i].password +"\n"
         prettyString+=users[i].balance +"\n"
     }
-
     return prettyString;
   }
 
