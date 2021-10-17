@@ -20,10 +20,12 @@ function AllData(){
       header="Create Account"
       status={status}
       body={ <>
-        <h5>All Data in Store</h5>
-        {beautifyData()}<br/>
-        </>
-      }
+       <h5>All Data in Store</h5>
+            <br/>
+            {beautifyData()}<br/>
+            <br/>
+            </>
+          }
   />
   )
 }
