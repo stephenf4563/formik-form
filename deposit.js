@@ -33,7 +33,7 @@ function Deposit(){
   function doDeposit(value){
     if(checkValue(value)){
       setName('');
-      ctx.users[0].balance = ctx.users[0].balance + balance;
+      ctx.users.push(ctx.users[0].name,ctx.users[0].email,ctx.users[0].password,ctx.users[0].balance+value);
       setShow(true);
       Deposit();
     }
