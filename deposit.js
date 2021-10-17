@@ -34,7 +34,7 @@ function Deposit(){
   function doDeposit(value){
     if(checkValue(value)){
       setName('');
-      ctx.balance+= balance;
+      ctx.users[0].balance+= balance;
       setShow(true);
       Deposit();
     }
