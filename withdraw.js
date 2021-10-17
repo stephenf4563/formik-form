@@ -60,7 +60,7 @@ return (
         ):(
           <>
           <h5>Success</h5>
-          <button type="submit" className="btn btn-light" onClick={clearForm}>Money Successfully Deposited</button>
+          <button type="submit" className="btn btn-light" onClick={clearForm}>Money Successfully Withdrew</button>
           </>
         )}
 />
