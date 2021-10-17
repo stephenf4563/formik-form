@@ -55,7 +55,6 @@ function Deposit(){
             </select> 
             <input type="number" className="form-control" id="depositAmount" placeholder="Enter Amount" value={balance} onChange={e => setBalance(e.currentTarget.value)}/><br/>
             <button type="submit" className="btn btn-light" onClick={doDeposit}>Deposit</button>
-            <button type="submit" className="btn btn-light" onClick={load}>Deposit</button>
             </>
           ):(
             <>
