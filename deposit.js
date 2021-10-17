@@ -31,10 +31,21 @@ function Deposit(){
     setShow(true);
   }
 
-  function doDeposit(){
-    setName('');
-    ctx.balance+= balance;
-    setShow(true);
+  function doDeposit(value){
+    if(checkValue(value)){
+      setName('');
+      ctx.balance+= balance;
+      setShow(true);
+      Deposit();
+    }
+  }
+
+  function checkValue(value){
+    if(value<0){
+      setStatus("value cannot be less than zero.")
+      return false;
+    }
+    return true;
   }
 
   return (
@@ -47,7 +58,7 @@ function Deposit(){
             <select id="nameList">
               <option>{ctx.users[0].name}</option>
             </select> 
-            <input type="number" className="form-control" id="depositAmount" placeholder="Enter Amount" value={balance} onChange={e => setBalance(e.currentTarget.value)}/><br/>
+            <input type="number" className="form-control" id="depositAmount" placeholder="Enter Amount" value={balance} onChange={e => doDeposit(e.currentTarget.value)}/><br/>
             <button type="submit" className="btn btn-light" onClick={doDeposit}>Deposit</button>
             </>
           ):(
