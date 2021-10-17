@@ -33,7 +33,6 @@ function Deposit(){
   function doDeposit(value){
     if(checkValue(value)){
       setName('');
-      ctx.users.push(ctx.users[0].name,ctx.users[0].email,ctx.users[0].password,ctx.users[0].balance+value);
       setShow(true);
       Deposit();
     }
@@ -47,6 +46,14 @@ function Deposit(){
     return true;
   }
 
+  function populateList(){
+    return (
+      React.users.map(user => (
+        <option>{user.name}</option>
+      ))
+    )
+  }
+
   return (
     <Card
     bgcolor="primary"
@@ -55,7 +62,7 @@ function Deposit(){
             <>
             Select User<br/>
             <select id="nameList">
-              <option>{ctx.users[0].name}</option>
+              {populateList()}
             </select> 
             <input type="number" className="form-control" id="depositAmount" placeholder="Enter Amount" value={balance} onChange={e => doDeposit(e.currentTarget.value)}/><br/>
             <button type="submit" className="btn btn-light" onClick={doDeposit}>Deposit</button>
