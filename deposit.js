@@ -45,7 +45,7 @@ function Deposit(){
             <>
             Select User<br/>
             <select id="nameList">
-              <option>{name1}</option>
+              <option>{ctx.users[0].name}</option>
             </select> 
             <input type="number" className="form-control" id="depositAmount" placeholder="Enter Amount" value={balance} onChange={e => setBalance(e.currentTarget.value)}/><br/>
             <button type="submit" className="btn btn-light" onClick={doDeposit}>Deposit</button>
