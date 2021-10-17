@@ -1,7 +1,7 @@
 function load(){
   ctx.users.name;
 }
-function Deposit(){
+function Withdrawl(){
 const [show, setShow]         = React.useState(true);
 const [status, setStatus]     = React.useState('');
 const [name, setName]         = React.useState('');
@@ -60,7 +60,7 @@ return (
         ):(
           <>
           <h5>Success</h5>
-          <button type="submit" className="btn btn-light" onClick={clearForm}>Money Successfully Deposited</button>
+          <button type="submit" className="btn btn-light" onClick={clearForm}>Money Successfully Withdrew</button>
           </>
         )}
 />
