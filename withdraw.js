@@ -54,7 +54,7 @@ return (
           <option>Position2</option>
           </select> 
           <input type="number" className="form-control" id="withdrawlAmount" placeholder="Enter Amount" value={balance} onChange={e => setBalance(e.currentTarget.value)}/><br/>
-          <button type="submit" className="btn btn-light" onClick={doWithdraw}>Deposit</button>
+          <button type="submit" className="btn btn-light" onClick={doWithdraw}>Withdraw</button>
           </>
         ):(
           <>
