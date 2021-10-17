@@ -21,7 +21,6 @@ function Deposit(){
     console.log(name,balance);
     if (!validate(name,  'name'))     return;
     if (!validate(balance, 'balance')) return;
-    ctx.users.push({name,balance});
     setShow(false);
   }
 
@@ -34,7 +33,7 @@ function Deposit(){
   function doDeposit(value){
     if(checkValue(value)){
       setName('');
-      ctx.users[0].balance+= balance;
+      ctx.users[0].balance = ctx.users[0].balance + balance;
       setShow(true);
       Deposit();
     }
