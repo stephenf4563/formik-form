@@ -35,11 +35,39 @@ function clearForm(){
   setShow(true);
 }
 
-function doWithdraw(){
-  setName('');
-  ctx.balance+= balance;
-  setShow(true);
-}
+ function doWithdraw(value){
+    if(checkValue(value)){
+      console.log(selected);
+      for(var i = 0; i < ctx.users.length; i++) {
+        if(selected = ctx.users[i].name){
+          ctx.users[i].balance = ctx.users[i].balance-value;
+        }
+      }
+      setName('');
+      setShow(true);
+    }
+  }
+
+  function checkValue(value){
+    if(value<0){
+      setStatus("value cannot be less than zero.")
+      return false;
+    }
+    setStatus("Deposited " - value);
+    return true;
+  }
+
+  function populateList(){
+    return (
+      ctx.users.map(user => (
+        <option>{user.name}</option>
+      ))
+    )
+  }
+
+  function updateSelected(nameVal){
+    selected = nameVal;
+  }
 
 return (
   <Card
@@ -53,7 +81,7 @@ return (
           <option>Position1</option>
           <option>Position2</option>
           </select> 
-          <input type="number" className="form-control" id="withdrawlAmount" placeholder="Enter Amount" value={balance} onChange={e => setBalance(e.currentTarget.value)}/><br/>
+          <input type="number" className="form-control" id="withdrawAmount" placeholder="Enter Amount" value={balance} onChange={e => setBalance(e.currentTarget.value)}/><br/>
           <button type="submit" className="btn btn-light" onClick={doWithdraw}>Withdraw</button>
           </>
         ):(
