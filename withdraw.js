@@ -53,7 +53,7 @@ function clearForm(){
       setStatus("value cannot be less than zero.")
       return false;
     }
-    setStatus("Deposited " - value);
+    setStatus("Withdraw " - value);
     return true;
   }
 
@@ -75,21 +75,20 @@ return (
   header="Withdraw"
   body={show ? (
           <>
-          Select User
-          <br/>
-          <select>
-          <option>Position1</option>
-          <option>Position2</option>
-          </select> 
-          <input type="number" className="form-control" id="withdrawAmount" placeholder="Enter Amount" value={balance} onChange={e => setBalance(e.currentTarget.value)}/><br/>
-          <button type="submit" className="btn btn-light" onClick={doWithdraw}>Withdraw</button>
-          </>
-        ):(
-          <>
-          <h5>Success</h5>
-          <button type="submit" className="btn btn-light" onClick={clearForm}>Money Successfully Withdrawn</button>
-          </>
-        )}
-/>
-) 
+           Select User<br/>
+            <select id="nameList" onChange={e => updateSelected(e.currentTarget.value)}>
+              {populateList()}
+            </select> 
+            <input type="number" className="form-control" id="withdrawAmount" placeholder="Enter Amount" value={balance} onChange={e => doDeposit(e.currentTarget.value)}/><br/>
+            <button type="submit" className="btn btn-light" onClick={doWithdraw}>Withdraw</button>
+            <label>{status}</label>
+            </>
+          ):(
+            <>
+            <h5>Success</h5>
+            <button type="submit" className="btn btn-light" onClick={clearForm}>Money Successfull Withdraw</button>
+            </>
+          )}
+  />
+  ) 
 }
