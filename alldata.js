@@ -1,16 +1,7 @@
 function AllData(){
   const ctx = React.useContext(UserContext);
-  }
 
-  return (
-    <Card
-      bgcolor="primary"
-      header="Create Account"
-      status={status}
-      body={ <>
-       <h5>All Data in Store</h5>
-            <br/>
-    function beautifyData() {
+  function beautifyData() {
     var prettyString="";
 
     var users = ctx.users;
@@ -21,8 +12,20 @@ function AllData(){
         prettyString+=users[i].balance +"\n"
     }
     return prettyString;
- <br/>
- <br/>      
+  }
+
+  return (
+    <Card
+      bgcolor="primary"
+      header="Create Account"
+      status={status}
+      body={ <>
+       <h5>All Data in Store</h5>
+            <br/>
+            {beautifyData()}<br/>
+            <br/>
+            </>
+          }
   />
   )
 }
