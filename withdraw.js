@@ -1,4 +1,4 @@
-function load(){
+// function load(){
   ctx.users.name;
 }
 function Withdraw(){
