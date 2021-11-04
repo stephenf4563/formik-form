@@ -1,18 +1,18 @@
-// function load(){
+ function load(){
   ctx.users.name;
 }
-//function Withdraw(){
+function Withdraw(){
 const [show, setShow]         = React.useState(true);
 const [status, setStatus]     = React.useState('');
 const [name, setName]         = React.useState('');
 const [balance, setBalance] = React.useState('');
 const ctx = React.useContext(UserContext);
 
-//function load(){
+function load(){
   console.log(ctx.users.name);
 }
 
-//function validate(field, label){
+function validate(field, label){
     if (!field) {
       setStatus('Error: ' + label);
       setTimeout(() => setStatus(''),3000);
@@ -21,7 +21,7 @@ const ctx = React.useContext(UserContext);
     return true;
 }
 
-//function handleCreate(){
+function handleCreate(){
   console.log(name,balance);
   if (!validate(name,  'name'))     return;
   if (!validate(balance, 'balance')) return;
@@ -29,13 +29,13 @@ const ctx = React.useContext(UserContext);
   setShow(false);
 }
 
-//function clearForm(){
+function clearForm(){
   setName('');
   setBalance('');
   setShow(true);
 }
 
- //function doWithdraw(value){
+function doWithdraw(value){
     if(checkValue(value)){
       console.log(selected);
       for(var i = 0; i < ctx.users.length; i++) {
@@ -48,7 +48,7 @@ const ctx = React.useContext(UserContext);
     }
   }
 
- // function checkValue(value){
+ function checkValue(value){
     if(value<0){
       setStatus("value cannot be less than zero.")
       return false;
@@ -57,7 +57,7 @@ const ctx = React.useContext(UserContext);
     return true;
   }
 
-  //function populateList(){
+function populateList(){
     return (
       ctx.users.map(user => (
         <option>{user.name}</option>
@@ -65,11 +65,11 @@ const ctx = React.useContext(UserContext);
     )
   }
 
- // function updateSelected(nameVal){
+function updateSelected(nameVal){
     selected = nameVal;
   }
 
-//return (
+return (
   <Card
   bgcolor="primary"
   header="Withdraw"
