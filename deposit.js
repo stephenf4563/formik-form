@@ -19,7 +19,7 @@ function Deposit(){
   function handleCreate(){
     console.log(name,balance);
     if (!validate(name,  'name'))     return;
-    if (!validate(balance, 'balance')) return;
+    if (!validate(balance, 0 )) return;
     setShow(false);
   }
 
