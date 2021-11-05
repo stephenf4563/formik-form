@@ -48,7 +48,7 @@ function Deposit(){
       setStatus("value cannot be less than zero.")
       return false;
     }
-    setStatus(value);
+    setStatus(Balance + value);
     return true;
   }
 
