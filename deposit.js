@@ -8,6 +8,7 @@ function Deposit(){
   
   const ctx = React.useContext(UserContext);
   var selected = "";
+  var tempVal=0;
   function validate(field, label){
       if (!field) {
         setStatus('Error: ' + label);
@@ -64,6 +65,10 @@ function Deposit(){
     selected = nameVal;
   }
 
+  function updateValue(val){
+    tempVal = val;
+  }
+
   return (
     <Card
     bgcolor="primary"
@@ -74,8 +79,8 @@ function Deposit(){
             <select id="nameList" onChange={e => updateSelected(e.currentTarget.value)}>
               {populateList()}
             </select> 
-            <input type="number" className="form-control" id="depositAmount" placeholder="Enter Amount" /><br/>
-            <button type="submit" className="btn btn-light" onClick={doDeposit}>Deposit</button>
+            <input type="number" className="form-control" id="depositAmount" placeholder="Enter Amount" onChange={e => updateValue(e.currentTarget.value)}/><br/>
+            <button type="submit" className="btn btn-light" onClick={doDeposit(tempVal)}>Deposit</button>
             <label>{status}</label>
             </>
           ):(
