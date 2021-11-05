@@ -4,7 +4,6 @@ function Deposit(){
   const [status, setStatus]     = React.useState('');
   const [name, setName]         = React.useState('');
   const [balance, setBalance] = React.useState(0);
-  const [balanceMsg, setBalanceMsg]     = React.useState('');
 
   
   const ctx = React.useContext(UserContext);
@@ -38,7 +37,6 @@ function Deposit(){
       for(var i = 0; i < ctx.users.length; i++) {
         if(selected = ctx.users[i].name){
           ctx.users[i].balance = ctx.users[i].balance+tempVal;
-          balanceMsg = ctx.users[i].balance;
         }
       }
       setName('');
@@ -64,11 +62,6 @@ function Deposit(){
 
   function updateSelected(nameVal){
     selected = nameVal;
-    for(var i = 0; i < ctx.users.length; i++) {
-      if(selected = ctx.users[i].name){
-        balanceMsg = ctx.users[i].balance;
-      }
-    }
   }
 
   function updateValue(val){
