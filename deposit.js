@@ -7,8 +7,8 @@ function Deposit(){
 
   
   const ctx = React.useContext(UserContext);
-  var selected = 'Steve';
   var tempVal=0;
+  var selected='';
   function validate(field, label){
       if (!field) {
         setStatus('Error: ' + label);
@@ -32,6 +32,9 @@ function Deposit(){
   }
 
   function doDeposit(){
+    if(selected === ''){
+      selected = ctx.users[0].name;
+    }    
     if(checkValue(tempVal)){
       console.log(selected);
       for(var i = 0; i < ctx.users.length; i++) {
