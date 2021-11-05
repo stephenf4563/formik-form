@@ -16,24 +16,6 @@ function Deposit(){
       }
       return true;
   }
-<label>Bank Balance:</label>
-<br />
-<input type="text" id="bankBalance" value="balance" />
-<br />
-<br />
-<button id="deposit">Deposit</button>
-
-var balance = document.getElementById('balance').value;
-balance = Number(balance);
-
-deposit.addEventListener('click', depositCash);
-
-function depositCash () {
-  var depositAmt = prompt('How much would you like to deposit?');
-  depositAmt = Number(depositAmt);
-  balance = depositAmt + balance;
-  document.getElementById('bankBalance').value = balance;
-}
   
   function handleCreate(){
     console.log(name,balance);
