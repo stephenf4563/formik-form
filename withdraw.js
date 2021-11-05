@@ -82,7 +82,7 @@ body={show ? (
             <input type="number" className="form-control" id="withdrawAmount" placeholder="Enter Amount" /><br/>
             <button type="submit" className="btn btn-light" onClick={doWithdraw}>Withdraw</button>
             <label>{status}</label>
-            <label>{balance}/label>
+            
             </>
           ):(
             <>
