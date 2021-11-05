@@ -31,8 +31,8 @@ function Deposit(){
     setShow(true);
   }
 
-  function doDeposit(value){
-    if(checkValue(value)){
+  function doDeposit(){
+    if(checkValue(tempVal)){
       console.log(selected);
       for(var i = 0; i < ctx.users.length; i++) {
         if(selected = ctx.users[i].name){
@@ -80,7 +80,7 @@ function Deposit(){
               {populateList()}
             </select> 
             <input type="number" className="form-control" id="depositAmount" placeholder="Enter Amount" onChange={e => updateValue(e.currentTarget.value)}/><br/>
-            <button type="submit" className="btn btn-light" onClick={doDeposit(tempVal)}>Deposit</button>
+            <button type="submit" className="btn btn-light" onClick={doDeposit}>Deposit</button>
             <label>{status}</label>
             </>
           ):(
