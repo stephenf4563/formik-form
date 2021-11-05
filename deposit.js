@@ -4,6 +4,7 @@ function Deposit(){
   const [status, setStatus]     = React.useState('');
   const [name, setName]         = React.useState('');
   const [balance, setBalance] = React.useState(0);
+  var value = balance
   
   const ctx = React.useContext(UserContext);
   var selected = "";
