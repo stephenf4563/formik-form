@@ -1,41 +1,36 @@
- function load(){
-  ctx.users.name;
-}
 function Withdraw(){
-const [show, setShow]         = React.useState(true);
-const [status, setStatus]     = React.useState('');
-const [name, setName]         = React.useState('');
-const [balance, setBalance] = React.useState('');
-const ctx = React.useContext(UserContext);
 
-function load(){
-  console.log(ctx.users.name);
-}
+  const [show, setShow]         = React.useState(true);
+  const [status, setStatus]     = React.useState('');
+  const [name, setName]         = React.useState('');
+  const [balance, setBalance] = React.useState(0);
 
-function validate(field, label){
-    if (!field) {
-      setStatus('Error: ' + label);
-      setTimeout(() => setStatus(''),3000);
-      return false;
-    }
-    return true;
-}
+  
+  const ctx = React.useContext(UserContext);
+  var selected = "";
+  function validate(field, label){
+      if (!field) {
+        setStatus('Error: ' + label);
+        setTimeout(() => setStatus(''),3000);
+        return false;
+      }
+      return true;
+  }
+  
+  function handleCreate(){
+    console.log(name,balance);
+    if (!validate(name,  'name'))     return;
+    if (!validate(balance, 'balance')) return;
+    setShow(false);
+  }
 
-function handleCreate(){
-  console.log(name,balance);
-  if (!validate(name,  'name'))     return;
-  if (!validate(balance, 'balance')) return;
-  ctx.users.push({name,balance});
-  setShow(false);
-}
+  function clearForm(){
+    setName('');
+    setBalance('');
+    setShow(true);
+  }
 
-function clearForm(){
-  setName('');
-  setBalance('');
-  setShow(true);
-}
-
-function doWithdraw(value){
+  function doWithdraw(value){
     if(checkValue(value)){
       console.log(selected);
       for(var i = 0; i < ctx.users.length; i++) {
@@ -48,16 +43,16 @@ function doWithdraw(value){
     }
   }
 
- function checkValue(value){
+  function checkValue(value){
     if(value<0){
       setStatus("value cannot be less than zero.")
       return false;
     }
-    setStatus("Withdraw " - value);
+    setStatus(Withdraw + value);
     return true;
   }
 
-function populateList(){
+  function populateList(){
     return (
       ctx.users.map(user => (
         <option>{user.name}</option>
@@ -65,30 +60,30 @@ function populateList(){
     )
   }
 
-function updateSelected(nameVal){
+  function updateSelected(nameVal){
     selected = nameVal;
   }
 
-return (
-  <Card
-  bgcolor="primary"
-  header="Withdraw"
-body={show ? (
+  return (
+    <Card
+    bgcolor="primary"
+    header="Withdraw"
+    body={show ? (
             <>
             Select User<br/>
             <select id="nameList" onChange={e => updateSelected(e.currentTarget.value)}>
               {populateList()}
             </select> 
-            <input type="number" className="form-control" id="withdrawAmount" placeholder="Enter Amount" /><br/>
+            <input type="number" className="form-control" id="depositAmount" placeholder="Enter Amount" /><br/>
             <button type="submit" className="btn btn-light" onClick={doWithdraw}>Withdraw</button>
             <label>{status}</label>
-            
             </>
           ):(
             <>
             <h5>Success</h5>
-            <button type="submit" className="btn btn-light" onClick={clearForm}>Money Successfully withdrew</button>
+            <button type="submit" className="btn btn-light" onClick={clearForm}>Money Successfully Withdrew</button>
             </>
           )}
   />
   ) 
+}
