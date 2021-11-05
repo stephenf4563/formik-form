@@ -4,6 +4,7 @@ function Deposit(){
   const [status, setStatus]     = React.useState('');
   const [name, setName]         = React.useState('');
   const [balance, setBalance] = React.useState(0);
+  const [balanceMsg, setBalanceMsg]     = React.useState('');
 
   
   const ctx = React.useContext(UserContext);
@@ -36,7 +37,8 @@ function Deposit(){
       console.log(selected);
       for(var i = 0; i < ctx.users.length; i++) {
         if(selected = ctx.users[i].name){
-          ctx.users[i].balance = ctx.users[i].balance+value;
+          ctx.users[i].balance = ctx.users[i].balance+tempVal;
+          balanceMsg = ctx.users[i].balance;
         }
       }
       setName('');
@@ -49,7 +51,6 @@ function Deposit(){
       setStatus("value cannot be less than zero.")
       return false;
     }
-    setStatus('balance' + value);
     return true;
   }
 
@@ -63,6 +64,11 @@ function Deposit(){
 
   function updateSelected(nameVal){
     selected = nameVal;
+    for(var i = 0; i < ctx.users.length; i++) {
+      if(selected = ctx.users[i].name){
+        balanceMsg = ctx.users[i].balance;
+      }
+    }
   }
 
   function updateValue(val){
@@ -79,6 +85,7 @@ function Deposit(){
             <select id="nameList" onChange={e => updateSelected(e.currentTarget.value)}>
               {populateList()}
             </select> 
+            <label>{balanceMsg}</label>
             <input type="number" className="form-control" id="depositAmount" placeholder="Enter Amount" onChange={e => updateValue(e.currentTarget.value)}/><br/>
             <button type="submit" className="btn btn-light" onClick={doDeposit}>Deposit</button>
             <label>{status}</label>
