@@ -7,7 +7,7 @@ function Deposit(){
 
   
   const ctx = React.useContext(UserContext);
-  var selected = ctx.users[0].name;
+  var selected = 'Steve';
   var tempVal=0;
   function validate(field, label){
       if (!field) {
