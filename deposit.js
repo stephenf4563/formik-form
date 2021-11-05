@@ -65,7 +65,7 @@ function Deposit(){
   }
 
   function updateValue(val){
-    tempVal = val;
+    tempVal = parseInt(val);
   }
 
   return (
