@@ -1,89 +1,138 @@
-function Deposit(){
+import React, { useState } from "react";
+import * as Yup from "yup";
 
-  const [show, setShow]         = React.useState(true);
-  const [status, setStatus]     = React.useState('');
-  const [name, setName]         = React.useState('');
-  const [balance, setBalance] = React.useState('');
+import { Field, Form, Formik } from "formik";
+import { Card, UserContext } from "./Context";
+
+function Deposit() {
   
   const ctx = React.useContext(UserContext);
-  var selected = "";
-  function validate(field, label){
-      if (!field) {
-        setStatus('Error: ' + label);
-        setTimeout(() => setStatus(''),3000);
-        return false;
-      }
-      return true;
-  }
 
-  function handleCreate(){
-    console.log(name,balance);
-    if (!validate(name,  'name'))     return;
-    if (!validate(balance, 0 )) return;
-    setShow(false);
-  }
-
-  function clearForm(){
-    setName('');
-    setBalance('');
-    setShow(true);
-  }
-
-  function doDeposit(value){
-    if(checkValue(value)){
-      console.log(selected);
-      for(var i = 0; i < ctx.users.length; i++) {
-        if(selected = ctx.users[i].name){
-          ctx.users[i].balance = ctx.users[i].balance+value;
-          setStatus(ctx.users[i].balance);
-        }
-      }
-      setName('');
-      setShow(true);
+  const DepositSchema = Yup.object().shape(
+    {
+    depositAmount: Yup
+      .number()
+      .required("Please enter an amount")
+      .positive()
+      .integer()
     }
-  }
+  
+  );
 
-  function checkValue(value){
-    if(value<0){
-      setStatus("value cannot be less than zero.")
-      return false;
-    }
-    setStatus("Deposited " + value);
-    return true;
-  }
+  
+  const [ balanceUpdate, setBalanceUpdate] = useState(null);
+  const [showSuccessMessage, setShowSuccesMessage] = useState(false);
 
-  function populateList(){
+  const users = ctx.users.map((user, idx) => {
     return (
-      ctx.users.map(user => (
-        <option>{user.name}</option>
-      ))
-    )
-  }
-
-  function updateSelected(nameVal){
-    selected = nameVal;
-  }
+      <option key={idx} value={idx}>
+        {user.name}
+      </option>
+    );
+  });
 
   return (
+    <div className="container">
     <Card
-    bgcolor="primary"
-    header="Deposit"
-    body={show ? (
-            <>
-            Select User<br/>
-            <select id="nameList" onChange={e => updateSelected(e.currentTarget.value)}>
-              {populateList()}
-            </select> 
-            <input type="number" className="form-control" id="depositAmount" placeholder="Enter Amount" value={balance} }/><br/>
-            <button type="submit" className="btn btn-light" onClick={doDeposit}>Deposit</button>
-            <label>{status}</label>
-            </>
-          ):(
-            <>
-            <h5>Success</h5>
-            <button type="submit" className="btn btn-light" onClick={clearForm}>Money Successfully Deposited</button>
-            </>
+      className="mx-auto"
+      header="Deposit"
+      txtcolor="black"
+      body={
+        <Formik
+          initialValues={{
+            userPosition: "",
+            depositAmount: {balanceUpdate},
+          }}
+          validationSchema={DepositSchema}
+          onSubmit={(values) => {
+            ctx.users[values.userPosition].balance += values.depositAmount;
+            setBalanceUpdate(ctx.users[values.userPosition].balance);
+            setShowSuccesMessage(true);
+          }}
+          validateOnChange={(values) =>
+            setBalanceUpdate(ctx.users[values.userPosition].balance)
+          }
+        >
+          {({ errors, touched, isValid, dirty, values }) => (
+            <Form>
+              Account Balance:{" "}
+              {values.userPosition === ""
+                ? "$0"
+                : "$" + ctx.users[values.userPosition].balance}
+              <br />
+              <Field as="select" name="userPosition" className="form-control">
+                <option key="selectUser" value="" disabled>
+                  Select User
+                </option>
+                {users}
+              </Field>
+              {errors.userPosition && touched.userPosition ? (
+                <div
+                  style={{
+                    color: "red",
+                    fontWeight: "bold",
+                    fontSize: "x-small",
+                  }}
+                >
+                  {errors.userPosition}
+                </div>
+              ) : null}
+              <br />
+              Amount
+              <br />
+              <Field
+                className="form-control"
+                name="depositAmount"
+                placeholder="Deposit Amount"
+                type="number"
+                default="0"
+                min="0"
+              />
+              {errors.depositAmount && touched.depositAmount ? (
+                <div
+                  style={{
+                    color: "red",
+                    fontWeight: "bold",
+                    marginTop: 6,
+                    marginBottom: 10,
+                    fontSize: "small",
+                  }}
+                >
+                  {errors.depositAmount}
+                </div>
+              ) : null}
+              <br />
+              <button
+                type="submit"
+                className="btn btn-outline-primary mr-1 w-100"
+                disabled={!(isValid && dirty)}
+              >
+                Submit
+              </button>
+              {showSuccessMessage ? (
+                <div style={{
+                  color: 'green',
+                  backgroundColor: 'LightGreen',
+                  textAlign: "center",
+                  borderRadius: 5,
+                  fontWeight: 'bold',
+                  fontSize: 'x-small',
+                  padding: 10,
+                  marginTop: 10,
+              }}
+            >
+               Deposit Sucessful
+
+                </div>
+  
+              ) : null}
+            </Form>
           )}
-  />
-  ) 
+        </Formik>
+      }
+    />
+    </div>
+  );
 }
+
+export default Deposit
