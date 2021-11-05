@@ -73,22 +73,22 @@ return (
   <Card
   bgcolor="primary"
   header="Withdraw"
-  body={show ? (
-          <>
-           Select User<br/>
+body={show ? (
+            <>
+            Select User<br/>
             <select id="nameList" onChange={e => updateSelected(e.currentTarget.value)}>
               {populateList()}
             </select> 
-            <input type="number" className="form-control" id="withdrawAmount" placeholder="Enter Amount" value={balance} onChange={e => doDeposit(e.currentTarget.value)}/><br/>
+            <input type="number" className="form-control" id="withdrawAmount" placeholder="Enter Amount" /><br/>
             <button type="submit" className="btn btn-light" onClick={doWithdraw}>Withdraw</button>
             <label>{status}</label>
+            <label>{balance}/label>
             </>
           ):(
             <>
             <h5>Success</h5>
-            <button type="submit" className="btn btn-light" onClick={clearForm}>Money Successfull Withdraw</button>
+            <button type="submit" className="btn btn-light" onClick={clearForm}>Money Successfully withdrew</button>
             </>
           )}
   />
   ) 
-}
