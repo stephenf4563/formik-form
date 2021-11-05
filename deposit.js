@@ -78,7 +78,6 @@ function Deposit(){
             <select id="nameList" onChange={e => updateSelected(e.currentTarget.value)}>
               {populateList()}
             </select> 
-            <label>{balanceMsg}</label>
             <input type="number" className="form-control" id="depositAmount" placeholder="Enter Amount" onChange={e => updateValue(e.currentTarget.value)}/><br/>
             <button type="submit" className="btn btn-light" onClick={doDeposit}>Deposit</button>
             <label>{status}</label>
