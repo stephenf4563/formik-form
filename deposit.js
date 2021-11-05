@@ -74,7 +74,7 @@ function Deposit(){
               {populateList()}
             </select> 
             <input type="number" className="form-control" id="depositAmount" placeholder="Enter Amount" /><br/>
-            <button type="submit" className="btn btn-light" onClick={doDeposit(5)}>Deposit</button>
+            <button type="submit" className="btn btn-light" onClick={doDeposit}>Deposit</button>
             <label>{status}</label>
             </>
           ):(
