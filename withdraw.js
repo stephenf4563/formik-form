@@ -7,7 +7,9 @@ function Withdraw(){
 
   
   const ctx = React.useContext(UserContext);
-  var selected = "";
+  var tempVal=0;
+  var selected;
+
   function validate(field, label){
       if (!field) {
         setStatus('Error: ' + label);
@@ -30,12 +32,14 @@ function Withdraw(){
     setShow(true);
   }
 
-  function doWithdraw(value){
-    if(checkValue(value)){
+  function doWithdraw(){ 
+    if(checkValue(tempVal)){
       console.log(selected);
+      selected = document.getElementById("nameList").value;
       for(var i = 0; i < ctx.users.length; i++) {
-        if(selected = ctx.users[i].name){
-          ctx.users[i].balance = ctx.users[i].balance-value;
+        if(selected === ctx.users[i].name){
+          ctx.users[i].balance = ctx.users[i].balance+tempVal;
+          setStatus("balance " - ctx.users[i].balance);
         }
       }
       setName('');
@@ -61,7 +65,16 @@ function Withdraw(){
   }
 
   function updateSelected(nameVal){
-    selected = nameVal;
+    selected= nameVal;
+    for(var i = 0; i < ctx.users.length; i++) {
+      if(selected === ctx.users[i].name){
+        setStatus("balance " - ctx.users[i].balance);
+      }
+    }
+  }
+
+  function updateValue(val){
+    tempVal = parseInt(val);
   }
 
   return (
@@ -74,7 +87,7 @@ function Withdraw(){
             <select id="nameList" onChange={e => updateSelected(e.currentTarget.value)}>
               {populateList()}
             </select> 
-            <input type="number" className="form-control" id="depositAmount" placeholder="Enter Amount" /><br/>
+            <input type="number" className="form-control" id="withdrawAmount" placeholder="Enter Amount" /><br/>
             <button type="submit" className="btn btn-light" onClick={doWithdraw}>Withdraw</button>
             <label>{status}</label>
             </>
