@@ -38,8 +38,8 @@ function Withdraw(){
       selected = document.getElementById("nameList").value;
       for(var i = 0; i < ctx.users.length; i++) {
         if(selected === ctx.users[i].name){
-          ctx.users[i].balance = ctx.users[i].balance-tempVal;
-          setStatus("balance " - ctx.users[i].balance);
+          ctx.users[i].balance = ctx.users[i].balance+tempVal;
+          setStatus("balance " + ctx.users[i].balance);
         }
       }
       setName('');
@@ -68,7 +68,7 @@ function Withdraw(){
     selected= nameVal;
     for(var i = 0; i < ctx.users.length; i++) {
       if(selected === ctx.users[i].name){
-        setStatus("balance " - ctx.users[i].balance);
+        setStatus("balance " + ctx.users[i].balance);
       }
     }
   }
