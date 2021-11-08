@@ -52,7 +52,6 @@ function Withdraw(){
       setStatus("value cannot be less than zero.")
       return false;
     }
-    setStatus('balance' - value);
     return true;
   }
 
